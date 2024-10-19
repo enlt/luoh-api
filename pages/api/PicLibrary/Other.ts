@@ -14,7 +14,7 @@ const getMimeType = (extension: string): string => {
 const getJsonLink = (): string => 'https://api.luoh-an.me/storage/json/image/other/.json';
 
 // 根据图片名称生成图片的 URL
-const getImageLink = (value: string): string => `https://new-api-1.pages.dev/image/other/${value}`;
+const getImageLink = (value: string): string => `https://cdn.s1.luoh-an.me/image/other/${value}`;
 
 // 处理错误响应
 const handleError = (res: NextApiResponse, message: string): void => {
