@@ -1,18 +1,19 @@
 import { MongoClient } from 'mongodb';
 
 const uri = "mongodb+srv://luohanapi:luohanapi@luohanapi.3lv3y.mongodb.net/tokens?retryWrites=true&w=majority";
-let client: MongoClient;
-let clientPromise: Promise<MongoClient> = Promise.resolve(new MongoClient(uri));  // 初始化 clientPromise
+let client: MongoClient | null = null;
+let clientPromise: Promise<MongoClient> | null = null;
 
 // 使用单例模式防止多次创建连接
-if (!client) {
-  client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+if (!clientPromise) {
+  client = new MongoClient(uri);
   clientPromise = client.connect();
 }
 
 export default async function handler(req, res) {
   try {
-    const db = (await clientPromise).db('tokens');
+    const client = await clientPromise;
+    const db = client.db('tokens');
     const collection = db.collection('free1');
 
     if (req.method === 'GET') {
@@ -29,7 +30,7 @@ export default async function handler(req, res) {
       res.status(405).end(`Method ${req.method} Not Allowed`);
     }
   } catch (error) {
-    console.error(error);
+    console.error('Error:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 }
