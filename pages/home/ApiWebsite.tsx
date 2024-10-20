@@ -63,7 +63,7 @@ const ApiWebsite = () => {
           <>
             <div className="flex items-center space-x-2 mb-2">
               <span className="text-green-400">GET</span>
-              <span className="break-all">https://api.luoh-an.me/PicLibrary/AnimeImage?t=wallpaper&return=json</span>
+              <span className="break-all">https://api.luoh-an.me/PicLibrary/AnimeImage?t=wallpaper&r=json</span>
             </div>
             <pre className="bg-gray-800 p-4 rounded-md overflow-x-auto">
               {loading ? '加载中...' : error ? error : JSON.stringify(apiResponse, null, 2)}
@@ -106,45 +106,47 @@ const ApiWebsite = () => {
     const features: Feature[] = [
       {
         icon: <Globe className="w-8 h-8" />,
-        title: "全球加速",
-        details: "多区域部署，快速响应"
+        title: "全球访问",
+        details: "覆盖全球的多区域服务，确保用户在任何地方都能快速访问和响应，减少延迟。"
       },
       {
         icon: <Zap className="w-8 h-8" />,
-        title: "简单易用",
-        details: "一行代码即可接入，开箱即用"
+        title: "请求迅捷",
+        details: "简化的 API 设计，快速完成请求，确保在高并发情况下也能保持稳定的响应速度。"
       },
       {
         icon: <Rocket className="w-8 h-8" />,
-        title: "极速响应",
-        details: "平均响应时间小于100ms"
+        title: "响应快速",
+        details: "通过优化的架构和智能负载均衡，保证系统的请求处理速度和高效的性能表现。"
       },
       {
         icon: <Database className="w-8 h-8" />,
-        title: "海量资源",
-        details: "超过100万张优质动漫图片"
+        title: "数据广泛",
+        details: "提供海量数据资源，涵盖不同领域与行业场景，满足各种数据需求。"
       },
       {
         icon: <Star className="w-8 h-8" />,
-        title: "品质保证",
-        details: "所有图片经过人工筛选"
+        title: "质量优良",
+        details: "所有数据经过严格筛选与验证，确保提供的资源精准且高质量，减少无效数据。"
       },
       {
         icon: <Repeat className="w-8 h-8" />,
         title: "无限请求",
-        details: "无频率限制，随心所欲"
+        details: "无请求频率限制，允许高频次调用，确保开发者在大规模数据处理时也能轻松应对。"
       },
       {
         icon: <Globe className="w-8 h-8" />,
-        title: "完整支持",
-        details: "支持多种返回格式和分辨率"
+        title: "调用便捷",
+        details: "多种集成方式支持，包括 RESTful API 和 Webhooks，灵活接入不同的应用场景。"
       },
       {
         icon: <BookOpen className="w-8 h-8" />,
-        title: "在线文档",
-        details: "详尽的API文档和示例"
+        title: "简单上手",
+        details: "全面的文档、示例代码以及技术指南，帮助开发者快速上手并顺利完成集成。"
       }
     ];
+  };
+
 
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto px-4">
