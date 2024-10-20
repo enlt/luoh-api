@@ -17,19 +17,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const db = client.db('tokens');
     const collection = db.collection('free1');
 
-    if (req.method === 'GET') {
-      // 获取所有 tokens 数据
-      const tokens = await collection.find({}).toArray();
-      res.status(200).json(tokens);
-    } else if (req.method === 'POST') {
-      // 添加新 token 数据
-      const newToken = req.body;
-      const result = await collection.insertOne(newToken);
-      res.status(201).json({ message: 'Token added successfully', result });
-    } else {
-      res.setHeader('Allow', ['GET', 'POST']);
-      res.status(405).end(`Method ${req.method} Not Allowed`);
-    }
+    // 只处理 GET 请求，获取并展示数据
+    const tokens = await collection.find({}).toArray();
+    res.status(200).json(tokens);
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ message: 'Internal Server Error' });
