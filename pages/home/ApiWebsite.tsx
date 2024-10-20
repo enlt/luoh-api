@@ -1,4 +1,4 @@
-import ApiWebsite from '../components/ApiWebsite';
+import ApiWebsite from '../../components/ApiWebsite';
 
 export default function Home() {
   return (
