@@ -150,7 +150,7 @@ const ApiWebsite = () => {
 
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto px-4">
-        {features.map((feature, idx) => (
+        {Features.map((feature, idx) => (
           <div key={idx} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-xl transition-all transform hover:-translate-y-1">
             <div className="flex items-center space-x-3 mb-4 text-violet-600">
               {feature.icon}
