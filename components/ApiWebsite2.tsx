@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Code, Globe, Zap, Shield, ArrowRight, Copy, Check } from 'lucide-react';
 
-const ApiWebsite = () => {
+const ApiWebsite2 = () => {
   const [copied, setCopied] = useState(false);
 
   const copyCode = () => {
@@ -209,4 +209,4 @@ const ApiWebsite = () => {
   );
 };
 
-export default ApiWebsite;
+export default ApiWebsite2;

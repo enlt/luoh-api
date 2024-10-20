@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Code, Globe, Zap, Shield, ArrowRight, Copy, Check, Image, Database } from 'lucide-react';
 
-const ApiWebsite = () => {
+const ApiWebsite3 = () => {
   const [copied, setCopied] = useState(false);
   const [apiResponse, setApiResponse] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -307,4 +307,4 @@ const ApiWebsite = () => {
   );
 };
 
-export default ApiWebsite;
+export default ApiWebsite3;
