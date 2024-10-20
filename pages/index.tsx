@@ -8,8 +8,9 @@ interface Feature {
 }
 
 const ApiWebsite = () => {
-  const [activeTab, setActiveTab] = useState<'image'>('image');  // 默认只使用 'image' 类型
-  const [apiResponse, setApiResponse] = useState<string | null>(null);
+  // 使用正确的类型定义状态
+  const [activeTab, setActiveTab] = useState<'json' | 'image'>('json');
+  const [apiResponse, setApiResponse] = useState<string | object | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -17,11 +18,16 @@ const ApiWebsite = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`https://api.luoh-an.me/PicLibrary/AnimeImage?t=wallpaper&return=image`);
+      const response = await fetch(`https://api.luoh-an.me/PicLibrary/AnimeImage?t=wallpaper&return=${activeTab}`);
       if (!response.ok) throw new Error('API请求失败');
       
-      const imageUrl = response.url;
-      setApiResponse(imageUrl);
+      if (activeTab === 'json') {
+        const data = await response.json();
+        setApiResponse(data);
+      } else {
+        const imageUrl = response.url;
+        setApiResponse(imageUrl);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : '发生错误');
     } finally {
