@@ -1,4 +1,5 @@
 import { MongoClient } from 'mongodb';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 const uri = "mongodb+srv://luohanapi:luohanapi@luohanapi.3lv3y.mongodb.net/tokens?retryWrites=true&w=majority";
 let client: MongoClient | null = null;
@@ -10,7 +11,7 @@ if (!clientPromise) {
   clientPromise = client.connect();
 }
 
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const client = await clientPromise;
     const db = client.db('tokens');
