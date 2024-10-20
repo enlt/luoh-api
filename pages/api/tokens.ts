@@ -2,10 +2,10 @@ import { MongoClient } from 'mongodb';
 
 const uri = "mongodb+srv://luohanapi:luohanapi@luohanapi.3lv3y.mongodb.net/tokens?retryWrites=true&w=majority";
 let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
+let clientPromise: Promise<MongoClient> = Promise.resolve(new MongoClient(uri));  // 初始化 clientPromise
 
 // 使用单例模式防止多次创建连接
-if (!clientPromise) {
+if (!client) {
   client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
   clientPromise = client.connect();
 }
