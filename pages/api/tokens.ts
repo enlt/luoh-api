@@ -1,9 +1,8 @@
-// pages/api/tokens.js
 import { MongoClient } from 'mongodb';
 
 const uri = "mongodb+srv://luohanapi:luohanapi@luohanapi.3lv3y.mongodb.net/tokens?retryWrites=true&w=majority";
-let client;
-let clientPromise;
+let client: MongoClient;
+let clientPromise: Promise<MongoClient>;
 
 // 使用单例模式防止多次创建连接
 if (!clientPromise) {
