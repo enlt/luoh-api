@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Globe, Zap, ChevronRight, Rocket, Database, Repeat, BookOpen, Star } from 'lucide-react';
 
+interface Feature {
+  icon: React.ReactNode;
+  title: string;
+  details: string;
+}
+
 const ApiWebsite = () => {
-  const [activeTab, setActiveTab] = useState('json');
-  const [apiResponse, setApiResponse] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  // 使用正确的类型定义状态
+  const [activeTab, setActiveTab] = useState<'json' | 'image'>('json');
+  const [apiResponse, setApiResponse] = useState<string | object | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchData = async () => {
     setLoading(true);
@@ -22,7 +29,7 @@ const ApiWebsite = () => {
         setApiResponse(imageUrl);
       }
     } catch (err) {
-      setError(err.message);
+      setError(err instanceof Error ? err.message : '发生错误');
     } finally {
       setLoading(false);
     }
@@ -75,7 +82,7 @@ const ApiWebsite = () => {
                 <div className="text-red-400">{error}</div>
               ) : (
                 <img 
-                  src={apiResponse}
+                  src={apiResponse as string}
                   alt="API示例"
                   className="rounded-md max-w-full h-auto mx-auto"
                   onError={() => setError('图片加载失败')}
@@ -96,7 +103,7 @@ const ApiWebsite = () => {
 
   // 特性组件
   const Features = () => {
-    const features = [
+    const features: Feature[] = [
       {
         icon: <Globe className="w-8 h-8" />,
         title: "全球加速",
