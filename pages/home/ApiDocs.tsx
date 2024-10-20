@@ -1,4 +1,4 @@
-from '../../components/ApiDocs';
+import ApiDocs from '../../components/ApiDocs';
 
 export default function Home() {
   return (
