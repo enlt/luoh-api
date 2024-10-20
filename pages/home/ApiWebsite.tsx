@@ -145,12 +145,10 @@ const ApiWebsite = () => {
         details: "全面的文档、示例代码以及技术指南，帮助开发者快速上手并顺利完成集成。"
       }
     ];
-  };
-
 
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto px-4">
-        {Features.map((feature, idx) => (
+        {features.map((feature, idx) => (
           <div key={idx} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-xl transition-all transform hover:-translate-y-1">
             <div className="flex items-center space-x-3 mb-4 text-violet-600">
               {feature.icon}
