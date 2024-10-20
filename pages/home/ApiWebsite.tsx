@@ -18,7 +18,7 @@ const ApiWebsite = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`https://api.luoh-an.me/PicLibray/AnimeImage?t=wallpaper&return=${activeTab}`);
+      const response = await fetch(`https://api.luoh-an.me/PicLibrary/AnimeImage?t=wallpaper&return=${activeTab}`);
       if (!response.ok) throw new Error('API请求失败');
       
       if (activeTab === 'json') {
@@ -63,7 +63,7 @@ const ApiWebsite = () => {
           <>
             <div className="flex items-center space-x-2 mb-2">
               <span className="text-green-400">GET</span>
-              <span className="break-all">https://api.luoh-an.me/PicLibray/AnimeImage?t=wallpaper&return=json</span>
+              <span className="break-all">https://api.luoh-an.me/PicLibrary/AnimeImage?t=wallpaper&return=json</span>
             </div>
             <pre className="bg-gray-800 p-4 rounded-md overflow-x-auto">
               {loading ? '加载中...' : error ? error : JSON.stringify(apiResponse, null, 2)}
@@ -73,7 +73,7 @@ const ApiWebsite = () => {
           <>
             <div className="flex items-center space-x-2 mb-2">
               <span className="text-green-400">GET</span>
-              <span className="break-all">https://api.luoh-an.me/PicLibray/AnimeImage?t=wallpaper&return=image</span>
+              <span className="break-all">https://api.luoh-an.me/PicLibrary/AnimeImage?t=wallpaper&return=image</span>
             </div>
             <div className="bg-gray-800 p-4 rounded-md">
               {loading ? (
@@ -169,16 +169,16 @@ const ApiWebsite = () => {
         <div className="max-w-7xl mx-auto text-center relative">
           <div className="inline-block mb-4">
             <span className="px-4 py-2 bg-violet-100 text-violet-800 rounded-full text-sm font-medium">
-              🎉 支持8K超高清图片
+              简洁高效，性能卓越
             </span>
           </div>
           
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 animate-fade-in-up">
-            专业级动漫图片 API
+            LuoH-AN API
           </h1>
           
           <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
-            为您的应用提供海量优质动漫图片资源，简单易用，即刻起飞
+            为了用户而生
           </p>
 
           <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
