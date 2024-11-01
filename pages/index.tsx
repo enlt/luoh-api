@@ -18,7 +18,7 @@ const ApiWebsite = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`https://api.luoh-an.me/PicLibrary/AnimeImage?t=wallpaper&return=${activeTab}`);
+      const response = await fetch(`https://api.luoh-an.me/PicLibrary/AnimeImage?t=wallpaper&r=${activeTab}`);
       if (!response.ok) throw new Error('API请求失败');
       
       if (activeTab === 'json') {

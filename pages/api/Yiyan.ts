@@ -14,7 +14,7 @@ const getRandomLine = async (url: string): Promise<string | null> => {
         const lines = response.data.split(/\r?\n/).filter((line: string) => line.trim() !== '');
         return lines.length > 0 ? lines[Math.floor(Math.random() * lines.length)] : null;
     } catch (error) {
-        console.error('Error fetching remote file:', error);
+        console.error('服务端错误', error);
         return null;
     }
 };
@@ -22,7 +22,7 @@ const getRandomLine = async (url: string): Promise<string | null> => {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     // 只处理 GET 请求
     if (req.method !== 'GET') {
-        return res.status(405).send("Method Not Allowed");
+        return res.status(405).send("不允许的请求");
     }
 
     const { t: type } = req.query;
