@@ -73,7 +73,7 @@ const ApiWebsite = () => {
           <>
             <div className="flex items-center space-x-2 mb-2">
               <span className="text-green-400">GET</span>
-              <span className="break-all">https://api.luoh-an.me/PicLibrary/AnimeImage?t=wallpaper&return=image</span>
+              <span className="break-all">https://api.luoh-an.me/PicLibrary/AnimeImage?t=wallpaper&r=image</span>
             </div>
             <div className="bg-gray-800 p-4 rounded-md">
               {loading ? (
