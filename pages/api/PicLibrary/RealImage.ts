@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 // 获取 JSON 链接
 const getJsonLink = (type: string): string => 
-  `https://api.luoh-an.me/storage/json/image/scy/${type}/.json`;
+  `https://cdn.s3.luoh-an.me/luoh-an-api/json/image/scy/${type}/.json`;
 
 // 获取图片链接
 const getImageLink = (type: string, value: string): string => 

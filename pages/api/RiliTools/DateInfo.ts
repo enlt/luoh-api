@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // 通过远程API获取随机诗词内容
     let text: string;
     try {
-        const { data } = await axios.get('https://api.luoh-an.me/Yiyan/?t=诗词/all');
+        const { data } = await axios.get('https://api.luoh-an.me/Yiyan?t=诗词/all');
         text = data || '天之道，损有余而补不足。';  // 如果API没有返回内容，则使用默认句子
     } catch (error) {
         text = '天之道，损有余而补不足。';  // 出现错误时使用默认诗句

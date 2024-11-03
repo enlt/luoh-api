@@ -8,7 +8,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 // 远程字体文件和图片链接的 URL
 const FONT_URL = 'https://api.luoh-an.me/storage/ttf/font.ttf';
-const IMAGE_TXT_URL = 'https://api.luoh-an.me/storage/daysign/images/images.txt';
+const IMAGE_TXT_URL = 'https://cdn.s3.luoh-an.me/luoh-an-api/daysign/images/images.txt';
 const TEMP_DIR = os.tmpdir(); // 获取系统临时文件目录
 const FONT_FILE = 'DateImageFont.ttf'; // 本地存储字体的文件名
 
@@ -108,7 +108,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     
     try {
-        const day = await axios.get("https://api.luoh.my.to/New/RiliTools/DateInfo/").then(res => res.data);
+        const day = await axios.get("https://api.luoh-an.me/RiliTools/DateInfo").then(res => res.data);
 
         // 准备要添加到图片的文本参数
         const textParams = [

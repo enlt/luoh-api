@@ -11,7 +11,7 @@ const getMimeType = (extension: string): string => {
 };
 
 // 返回存放图片名称的 JSON 链接
-const getJsonLink = (): string => 'https://api.luoh-an.me/storage/json/image/other/.json';
+const getJsonLink = (): string => 'https://cdn.s3.luoh-an.me/luoh-an-api/json/image/other/.json';
 
 // 根据图片名称生成图片的 URL
 const getImageLink = (value: string): string => `https://cdn.s1.luoh-an.me/image/other/${value}`;

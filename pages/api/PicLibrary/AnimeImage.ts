@@ -3,11 +3,11 @@ import fetch from 'node-fetch';
 
 // 获取 JSON 链接
 const getJsonLink = (type: string): string => 
-  `https://api.luoh-an.me/storage/json/image/ecy/${type}/.json`;
+  `https://cdn.s3.luoh-an.me/luoh-an-api/json/image/ecy/${type}/.json`;
 
 // 获取图片链接
 const getImageLink = (type: string, value: string): string => 
-  `https://image.baidu.com/search/down?url=https://cdn.s2.luoh-an.me/image/ecy/${type}/${value}`;
+  `https://cdn.s2.luoh-an.me/image/ecy/${type}/${value}`;
 
 // 从 JSON 内容中随机获取值
 const getRandomValueFromJson = (jsonContent: string): string | null => {
