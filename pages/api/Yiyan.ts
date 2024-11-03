@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // 根据类型获取文本文件的远程 URL
 const getTextLink = (type: string): string => {
-    const baseUrl = 'https://api.luoh-an.me/storage/json/text/';
+    const baseUrl = 'https://cdn.s3.luoh-an.me/luoh-an-api/json/text/';
     return `${baseUrl}${type}.txt`;
 };
 
