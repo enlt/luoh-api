@@ -7,7 +7,7 @@ const getJsonLink = (type: string): string =>
 
 // 获取图片链接
 const getImageLink = (type: string, value: string): string => 
-  `https://cdn.s2.luoh-an.me/image/ecy/${type}/${value}`;
+  `https://cdn.s1.luoh-an.me/image/emoticon/${type}/${value}`;
 
 // 从 JSON 内容中随机获取值
 const getRandomValueFromJson = (jsonContent: string): string | null => {
