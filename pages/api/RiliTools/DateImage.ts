@@ -6,15 +6,25 @@ import { createCanvas, loadImage, registerFont } from 'canvas';
 import os from 'os';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-// 本地字体文件路径
-const LOCAL_FONT_PATH = path.resolve('./public/public/storage/ttf/font.ttf'); // 确保字体文件位于项目的 public/fonts 目录下
+// 远程字体文件和图片链接的 URL
+const FONT_URL = 'https://cdn.s3.luoh-an.me/luoh-an-api/fonts/MaShanZheng-Regular.ttf';
+const IMAGE_TXT_URL = 'https://cdn.s3.luoh-an.me/luoh-an-api/daysign/images/images.txt';
+const TEMP_DIR = os.tmpdir(); // 获取系统临时文件目录
+const FONT_FILE = 'DateImageFont.ttf'; // 本地存储字体的文件名
 
-// 确保字体文件存在
+// 确保字体文件存在，如果不存在则下载
 async function ensureFontExists(): Promise<string> {
-    if (!fs.existsSync(LOCAL_FONT_PATH)) {
-        throw new Error('本地字体文件不存在，请检查路径是否正确或文件是否存在');
+    const tempFontPath = path.join(TEMP_DIR, FONT_FILE); // 本地字体文件路径
+    if (!fs.existsSync(tempFontPath)) {
+        try {
+            // 下载字体并保存
+            const fontResponse = await axios.get(FONT_URL, { responseType: 'arraybuffer' });
+            fs.writeFileSync(tempFontPath, Buffer.from(fontResponse.data));
+        } catch (error) {
+            throw new Error('字体文件下载失败，请检查字体文件的URL或网络连接');
+        }
     }
-    return LOCAL_FONT_PATH;
+    return tempFontPath;
 }
 
 // 使用 sharp 库调整图片尺寸
@@ -78,7 +88,7 @@ async function addTextToImage(
 // 获取远程图片链接列表
 async function getImageLinks(): Promise<string[]> {
     try {
-        const response = await axios.get('https://cdn.s3.luoh-an.me/luoh-an-api/daysign/images/images.txt');
+        const response = await axios.get(IMAGE_TXT_URL);
         return response.data.split('\n').filter(Boolean); // 解析文本中的图片链接
     } catch (error) {
         if (error instanceof Error) {
@@ -143,7 +153,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         // 下载并保存图片
         const imageResponse = await axios.get(randomImageLink, { responseType: 'arraybuffer' });
-        const imagePath = path.join(os.tmpdir(), 'randomImage.jpg');
+        const imagePath = path.join(TEMP_DIR, 'randomImage.jpg');
         fs.writeFileSync(imagePath, Buffer.from(imageResponse.data));
 
         // 调整图片大小并添加文本
