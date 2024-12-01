@@ -47,7 +47,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (error instanceof ApiError) {
             return res.status(error.statusCode).json({ error: error.message });
         }
-        return res.status(500).json({ error: `内部服务器错误: ${error.message}` });
+        // 确保 error 是 Error 类型
+        const err = error as Error;
+        return res.status(500).json({ error: `内部服务器错误: ${err.message}` });
     }
 }
 
