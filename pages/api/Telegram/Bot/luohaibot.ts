@@ -37,9 +37,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'POST') {
     const { message } = req.body;
 
+    // 获取机器人的用户信息
+    const botUser = await bot.getMe();
+
     // 检查消息是否是私聊消息或@机器人的消息
     const isPrivateChat = message.chat.type === 'private';
-    const isMentioned = message.text.includes(`@${bot.getMe().username}`);
+    const isMentioned = message.text.includes(`@${botUser.username}`);
 
     if (isPrivateChat || isMentioned || (message.reply_to_message && message.reply_to_message.from.is_bot)) {
       const userMessage = message.text;
