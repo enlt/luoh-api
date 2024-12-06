@@ -37,6 +37,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'POST') {
     const { message } = req.body;
 
+    // 检查 message 是否存在
+    if (!message) {
+      return res.status(400).json({ error: 'Message is missing' });
+    }
+
     // 获取机器人的用户信息
     const botUser = await bot.getMe();
 
@@ -65,7 +70,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       } catch (error) {
         console.error("Error processing AI API request:", error);
-        await bot.sendMessage(message.chat.id, "AI API请求失败，请稍后再试。", { reply_to_message_id: message.message_id });
+
+        // 将错误日志发送到Telegram
+        const errorMessage = `Error processing AI API request: ${error.message}`;
+        await bot.sendMessage(message.chat.id, errorMessage, { reply_to_message_id: message.message_id });
+
+        // 发送更详细的错误信息（可选）
+        if (error.response) {
+          const detailedError = `Status: ${error.response.status}\nData: ${JSON.stringify(error.response.data)}`;
+          await bot.sendMessage(message.chat.id, detailedError, { reply_to_message_id: message.message_id });
+        }
       }
     }
 
