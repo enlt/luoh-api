@@ -1,5 +1,6 @@
 import axios from 'axios';
 import TelegramBot from 'node-telegram-bot-api';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 // 初始化Telegram Bot
 const API_TOKEN = '7341946986:AAGBfk8Um3xb-0y4eBP7vE9tBN6mwXsrg_w';
@@ -32,7 +33,7 @@ const AI_REQUEST_BODY = {
   - 提供帮助时，力求融合古今智慧，确保回答既有深度又接地气。`
 };
 
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     const { message } = req.body;
 
