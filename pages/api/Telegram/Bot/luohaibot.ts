@@ -72,12 +72,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         console.error("Error processing AI API request:", error);
 
         // 将错误日志发送到Telegram
-        const errorMessage = `Error processing AI API request: ${error.message}`;
+        const errorMessage = `Error processing AI API request: ${(error as Error).message}`;
         await bot.sendMessage(message.chat.id, errorMessage, { reply_to_message_id: message.message_id });
 
         // 发送更详细的错误信息（可选）
-        if (error.response) {
-          const detailedError = `Status: ${error.response.status}\nData: ${JSON.stringify(error.response.data)}`;
+        if ((error as any).response) {
+          const detailedError = `Status: ${(error as any).response.status}\nData: ${JSON.stringify((error as any).response.data)}`;
           await bot.sendMessage(message.chat.id, detailedError, { reply_to_message_id: message.message_id });
         }
       }
